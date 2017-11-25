@@ -4,32 +4,85 @@
   <title>The Last Lecture</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!--Fonts-->
+  <link href="https://fonts.googleapis.com/css?family=Oxygen:400,700|Playfair+Display:400,700i" rel="stylesheet">
+  <!-- CSS links-->
+  <link rel="stylesheet" href="style.css">
   <!--jQuery-->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-  <!-- CSS links to MaxCDN's CDN supported version-->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <link rel="stylesheet" href="style.css">
-  <!-- Bootstrap links to MaxCDN's CDN supported version-->
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <!-- Greensock links to CloudFlare's CDN supported version-->
+  <!-- ScrollMagic + GSAP !-->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.3/TweenMax.min.js"></script>
-  <!-- Javascript -->
+  <script src="lib/scrollmagic/uncompressed/ScrollMagic.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.3/plugins/animation.gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.3/plugins/debug.addIndicators.min.js"></script>
+  <!-- Javascript Files -->
   <script type="text/javascript" src="main.js"></script>
 </head>
 <body>
-    <h1 class="title">The Last Lecture</h1>
-  <!--Container for Hero Section-->
-  <div class="container-fluid hero">
+  <header>
+    <h1 >the last lecture</h1>
     <h3>Life Lessons from Randy Pausch</h3>
-
-    <!--Here is a single row with a 4/8 column split in Bootstrap-->
-    <div class="row">
-      <div class="col-sm-4" style="background-color:lavender;">.col-sm-4</div>
-      <div class="col-sm-8" style="background-color:lavenderblush;">.col-sm-8</div>
+  </header>
+  <section id="svg-animation">
+    <svg version"1.1" xmlns="http://www.w3.org/2000/svg" width="277" height="5" viewBox="0 0 277 5">
+      <path id="line-svg" fill="none" stroke="#979797" stroke-linecap="square" stroke-width="5" d="M-14.5,130.5 L274.5,130.5" transform="translate(0 -128)"/>
+    </svg>
+  </section>
+  <section id="greenLines">
+    <svg width="1440px" height="754px" viewBox="0 0 1440 754" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+        <g id="v2" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="square">
+            <g id="Desktop-HD" transform="translate(0.000000, -5876.000000)" stroke="#539A00">
+                <g id="Group-3" transform="translate(-632.000000, 5695.000000)">
+                    <path d="M556,749 C656.331709,506.858029 803.54591,362.771967 997.642603,316.741814 C1191.7393,270.711661 1405.85843,387.801155 1640,668.010296" class="Line" stroke-width="31"></path>
+                    <path d="M556,679 C656.331709,436.858029 803.54591,292.771967 997.642603,246.741814 C1191.7393,200.711661 1405.85843,317.801155 1640,598.010296" class="Line" stroke-width="21"></path>
+                    <path d="M556,629 C656.331709,386.858029 803.54591,242.771967 997.642603,196.741814 C1191.7393,150.711661 1405.85843,267.801155 1640,548.010296" class="Line" stroke-width="11"></path>
+                    <path d="M1736,750 C1836.33171,507.858029 1983.54591,363.771967 2177.6426,317.741814 C2371.7393,271.711661 2585.85843,388.801155 2820,669.010296" class="Line" stroke-width="31"></path>
+                    <path d="M1736,680 C1836.33171,437.858029 1983.54591,293.771967 2177.6426,247.741814 C2371.7393,201.711661 2585.85843,318.801155 2820,599.010296" class="Line" stroke-width="21"></path>
+                    <path d="M1736,630 C1836.33171,387.858029 1983.54591,243.771967 2177.6426,197.741814 C2371.7393,151.711661 2585.85843,268.801155 2820,549.010296" class="Line" stroke-width="11"></path>
+                    <path d="M1.13686838e-13,805 C100.331709,562.858029 247.54591,418.771967 441.642603,372.741814 C635.739296,326.711661 849.858429,443.801155 1084,724.010296" class="Line" stroke-width="31"></path>
+                    <path d="M1.13686838e-13,735 C100.331709,492.858029 247.54591,348.771967 441.642603,302.741814 C635.739296,256.711661 849.858429,373.801155 1084,654.010296" class="Line" stroke-width="21"></path>
+                    <path d="M1.13686838e-13,685 C100.331709,442.858029 247.54591,298.771967 441.642603,252.741814 C635.739296,206.711661 849.858429,323.801155 1084,604.010296" class="Line" stroke-width="11"></path>
+                    <path d="M1165,919 C1277.08644,676.858029 1441.54806,532.771967 1658.38486,486.741814 C1875.22167,440.711661 2114.42671,557.801155 2376,838.010296" class="Line" stroke-width="31" transform="translate(1770.500000, 698.000000) scale(1, -1) translate(-1770.500000, -698.000000) "></path>
+                    <path d="M1200,880 C1306.81069,637.858029 1463.53135,493.771967 1670.16196,447.741814 C1876.79257,401.711661 2104.73859,518.801155 2354,799.010296" class="Line" stroke-width="21" transform="translate(1777.000000, 659.000000) scale(1, -1) translate(-1777.000000, -659.000000) "></path>
+                    <path d="M1234,842 C1334.33171,599.858029 1481.54591,455.771967 1675.6426,409.741814 C1869.7393,363.711661 2083.85843,480.801155 2318,761.010296" class="Line" stroke-width="11" transform="translate(1776.000000, 621.000000) scale(1, -1) translate(-1776.000000, -621.000000) "></path>
+                </g>
+            </g>
+        </g>
+    </svg>
+  </section>
+  <section id="section1">
+    <div>
+      <h2>fundamentals</h2>
+      <h2>fundamentals</h2>
+      <h2>fundamentals</h2>
+      <p>You’ve got to get the fundamentals down, because otherwise the fancy stuff is not going to work.</p>
     </div>
-  </div>
-
-  <br>
-
+  </section>
+  <section>
+    <div>
+      <h2>The brick walls are there for a reason.</h2>
+      <p>The brick walls are not there to keep us out, the brick walls are there to give us a chance to show how badly we want something. Because the brick walls are there to stop the people who don’t want it badly enough.</p>
+    </div>
+  </section>
+  <section>
+    <div>
+      <h2>experience is what you get</h2>
+      <h2>when you didn’t get what you wanted.</h2>
+      <p>It’s a phrase worth considering at every brick wall we encounter, and at every disappointment. It’s also a reminder that failure is not just acceptable, it’s often essential. </p>
+    </div>
+  </section>
+  <section>
+    <div>
+      <h2>look for the best in everybody.</h2>
+      <p>If you wait long enough, people will surprise and impress you.</p>
+    </div>
+  </section>
+  <section>
+    <div>
+      <h2>don’t complain.</h2>
+      <h2>just work harder.</h2>
+      <p>Too many people go through life complaining about their problems. I’ve always believed that if you took one-tenth the energy you put into complaining and applied it to solving the problem, you’d be surprised by how well things can work out. </p>
+    </div>
+  </section>
 </body>
 </html>
