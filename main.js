@@ -1,71 +1,48 @@
-$(function() {
+function preparePath(path) {
+  var len = path[0].getTotalLength();
+  path.css("stroke-dasharray", len);
+  path.css("stroke-dashoffset", len);
+}
 
+
+// document ready function
+$(function() {
     // Init Controller
     var scrollMagicController = new ScrollMagic.Controller({});
-    console.log ("created controller");
 
-    // create a scene
-    var scene = new ScrollMagic.Scene({
-      triggerHook: "onEnter",
-      triggerElement: "#section1",
-      duration: 400
-    })
-    .setTween("h2", {autoAlpha: 1, }, )
-    .addIndicators()
-    .addTo(scrollMagicController);
-
-
-    // get svg path
-    var svgPath = $("#line-svg"),
-        pathLen = svgPath.get(0).getTotalLength();
-        console.log(pathLen);
-
-
-    // prepare paths
-    svgPath.css("stroke-dasharray", pathLen);
-    svgPath.css("stroke-dashoffset", pathLen);
+    // Animation for section 1 header
+    // loop through each section
+    $("section div").each(function(){
+      var header = new ScrollMagic.Scene({
+        triggerElement: this.children[0],
+        triggerHook: 0.8,
+        })
+        .setClassToggle(this, "fade-in") //add class to project01
+        .addIndicators({
+          name: 'fade scene',
+          colorTrigger: 'black',
+          colorStart: '#74C695',
+          colorEnd: 'pink'
+          })
+        .addTo(scrollMagicController);
+    });
 
 
-    // build svgTween
-    var svgTween = new TimelineMax()
-    .add(TweenMax.to(svgPath, 0.9, {strokeDashoffset: 0, ease:Linear.easeNone}));
-
-    // build Scene
+    // Animation to draw SVG for green wavey lines
+    // grab svg and prepare svg paths
+    var greenLines = $(".line");
+    preparePath(greenLines);
+    // build tween
+    var tween = new TimelineMax()
+      .add(TweenMax.to(greenLines, 3, {strokeDashoffset: 0, ease:Linear.easeNone}));
+    // build scene, add tween to scene, add to controller
     var svgScene = new ScrollMagic.Scene({
-      triggerElement: "#svg-animation",
+      triggerElement: "#experience",
+      triggerHook: 0.8,
       duration: 300,
       tweenChanges: true
-    })
-  .setTween(svgTween)
-  .addIndicators()
-  .addTo(scrollMagicController);
-
-
-    // get svg path
-    var greenLines = $(".Line");
-        LineLen = greenLines.get(0).getTotalLength();
-        console.log(LineLen);
-
-    // prepare paths
-    greenLines.css("stroke-dasharray", LineLen);
-    greenLines.css("stroke-dashoffset", LineLen);
-
-    // build greenLinesTween
-    var greenTween = new TimelineMax()
-    .add(TweenMax.to(greenLines, 2, {strokeDashoffset: 0, ease:Linear.easeNone}));
-
-    // build Scene
-    var svgScene = new ScrollMagic.Scene({
-      triggerElement: "#greenLines",
-      duration: 500,
-      tweenChanges: true
-    })
-  .setTween(greenTween)
-  .addIndicators()
-  .addTo(scrollMagicController);
-
-
-
-
-
+      })
+      .setTween(tween)
+      .addIndicators() // remove after
+      .addTo(scrollMagicController);
 });
