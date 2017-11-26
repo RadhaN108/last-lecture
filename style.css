@@ -30,9 +30,9 @@ h1 {
 
 h2 {
   font-family:'Playfair Display', serif;
-  font-size: 4rem;
+  font-size: 3.4rem;
   font-weight: 700;
-  line-height: 3.5rem;
+  line-height: 3.7rem;
   font-style: italic;
 }
 
@@ -70,7 +70,6 @@ svg {
 
 /* specific classes for the fundamental svg*/
 svg#triangles {
-  /*position: relative;*/
   overflow: visible;
   transform: scale(.75);
 }
@@ -92,4 +91,15 @@ svg.brick-wall {
 .fade-in {
   opacity: 1;
   transform: translateY(0px);
+}
+
+svg path.bubble,
+svg path.heart {
+  opacity:0;
+  pointer-events:all;
+}
+
+.show-heart {
+  fill: #FFA3ED;
+  transition: all .5s ease;
 }

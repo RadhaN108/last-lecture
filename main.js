@@ -24,14 +24,14 @@ $(function() {
         triggerElement: this.children[0],
         triggerHook: 0.8,
         })
-        .setClassToggle(this, "fade-in") //add class to the section's div
-        // .addIndicators({ // remove before turning in!
-        //   name: 'fade scene',
-        //   colorTrigger: 'black',
-        //   colorStart: '#74C695',
-        //   colorEnd: 'pink'
-        //   })
-        .addTo(controller); // add to controller
+      .setClassToggle(this, "fade-in") //add class to the section's div
+      // .addIndicators({ // remove before turning in!
+      //   name: 'fade scene',
+      //   colorTrigger: 'black',
+      //   colorStart: '#74C695',
+      //   colorEnd: 'pink'
+      //   })
+      .addTo(controller); // add to controller
     });
 
     // ANIMATION: falling pyramid fundamentals when scrolling into section
@@ -58,7 +58,7 @@ $(function() {
     //   colorStart: '#74C695',
     //   colorEnd: 'pink'
     //  })
-  .addTo(controller);
+    .addTo(controller);
 
     // ANIMATION: get rid of brick on hover
     // when a brick element is hovered on, fade it out.
@@ -78,14 +78,14 @@ $(function() {
       triggerHook: 0.8,
       duration: 550,
       })
-      .setTween(brickEnter)
-      // .addIndicators({ // remove before turning in!
-      //   name: 'building brick wall',
-      //   colorTrigger: 'black',
-      //   colorStart: '#74C695',
-      //   colorEnd: 'pink'
-      // })
-      .addTo(controller);
+    .setTween(brickEnter)
+    // .addIndicators({ // remove before turning in!
+    //   name: 'building brick wall',
+    //   colorTrigger: 'black',
+    //   colorStart: '#74C695',
+    //   colorEnd: 'pink'
+    // })
+    .addTo(controller);
     // build tween
     var brickExit = new TimelineMax();
     brickExit.to(brickwall, 15, {y: "-=400px", ease:Power0.easeNone}, 0);
@@ -97,17 +97,17 @@ $(function() {
       duration: 300,
     })
     .setTween(brickExit)
-    .addIndicators()
+    // .addIndicators()
     .addTo(controller);
 
     // ANIMATION: Draw SVG for green wavey lines in experience section
     // grab svg paths and prepare paths by modifying css properties
     var greenLines = $(".line");
     preparePath(greenLines);
-    greenLines.css("opacity", 0.3)
+    greenLines.css("opacity", 0.3);
     // build tween
     var tween = new TimelineMax()
-      .add(TweenMax.to(greenLines, 2.5, {strokeDashoffset: 0, ease:Linear.easeNone}));
+    .add(TweenMax.to(greenLines, 2.5, {strokeDashoffset: 0, ease:Linear.easeNone}));
     // build scene, add tween to scene, add to controller
     var svgScene = new ScrollMagic.Scene({
       triggerElement: "#experience",
@@ -115,31 +115,65 @@ $(function() {
       duration: 300,
       tweenChanges: true
       })
-      .setTween(tween)
-      .addTo(controller);
+    .setTween(tween)
+    .addTo(controller);
 
-      // ANIMATION: change background color for hardwork section
-      // when user scrolls to the don't complain section, background turns black
-      // create animation TimelineMax
-      var backgroundChange = new TimelineMax()
-        .add(TweenMax.to('body', 1, {backgroundColor: 'black', ease:Power0.easeNone}))
-        .add(TweenMax.to('div', 1, {color: 'white', ease:Power0.easeNone}));
 
-      var complainBackground = new ScrollMagic.Scene({
-        triggerElement: "#work-hard",
-        triggerHook: .9,
-        duration: 500
-      })
-      .setTween(backgroundChange)
-      // .addIndicators({ // remove before turning in!
-      //   name: 'change background color',
-      //   colorTrigger: 'black',
-      //   colorStart: '#74C695',
-      //   colorEnd: 'pink'
-      // })
-      .addTo(controller); // add to controller
+    // ANIMATION: speech bubble popping in when entering section
+    //
+    var critique = new TimelineMax();
+    critique.to('.pink-bubble', 2, {opacity: '1'}, .5)
+            .from('.bubble1', 2, {x:'-=100'}, .75)
+            .to('.bubble1', 2, {opacity: '1'}, .75)
+            .from('.bubble2', 2, {x:'+=100'}, 1)
+            .to('.bubble2', 2, {opacity: '1'}, 1)
+            .from('.bubble3', 2, {x:'-=100'}, 1.25)
+            .to('.bubble3', 2, {opacity: '1'}, 1.25)
+            .from('.bubble4', 2, {x:'+=100'}, 1.5)
+            .to('.bubble4', 2, {opacity: '1'}, 1.5)
+            .from('.bubble5', 2, {x:'-=100'}, 1.75)
+            .to('.bubble5', 2, {opacity: '1'}, 1.75)
+            .from('.bubble6', 2, {x:'+=100'}, 2)
+            .to('.bubble6', 2, {opacity: '1'}, 2)
+            .to('.heart',0.5, {opacity: '1'}, 2.5)
+    ;
+    var speechBubbles = new ScrollMagic.Scene({
+      triggerElement:"#critic",
+      duration: 300,
+      triggerHook: 0.3
+    })
+    .setTween(critique)
+    .addIndicators()
+    .addTo(controller);
 
-      // ANIMATION: toggle backgorund when out of section (TODO)
+    // ANIMATION: hover over speech bubbles should become pink
+    $(".bubble").hover(function(){
+      $(this).toggleClass("show-heart");
+    });
+
+
+    // ANIMATION: change background color for hardwork section
+    // when user scrolls to the don't complain section, background turns black
+    // create animation TimelineMax
+    var backgroundChange = new TimelineMax()
+      .add(TweenMax.to('body', 1, {backgroundColor: 'black', ease:Power0.easeNone}))
+      .add(TweenMax.to('div', 1, {color: 'white', ease:Power0.easeNone}));
+
+    var complainBackground = new ScrollMagic.Scene({
+      triggerElement: "#work-hard",
+      triggerHook: .9,
+      duration: 500
+    })
+    .setTween(backgroundChange)
+    // .addIndicators({ // remove before turning in!
+    //   name: 'change background color',
+    //   colorTrigger: 'black',
+    //   colorStart: '#74C695',
+    //   colorEnd: 'pink'
+    // })
+    .addTo(controller); // add to controller
+
+    // ANIMATION: toggle backgorund when out of section (TODO)
 
 });
 
