@@ -1,3 +1,4 @@
+// helper function used to draw SVG paths when scrolling
 function preparePath(path) {
   var len = path[0].getTotalLength();
   path.css("stroke-dasharray", len);
@@ -7,29 +8,32 @@ function preparePath(path) {
 
 // document ready function
 $(function() {
-    // Init Controller
+
+    // Init Scroll Magic Controller
     var scrollMagicController = new ScrollMagic.Controller({});
 
-    // Animation for section 1 header
-    // loop through each section
+
+    // ANIMATION: fade in text when scrolling to the section
+    // Loop through each section's div
     $("section div").each(function(){
+      // create a scene for each section that is triggered at the start of the h2
       var header = new ScrollMagic.Scene({
         triggerElement: this.children[0],
         triggerHook: 0.8,
         })
-        .setClassToggle(this, "fade-in") //add class to project01
-        .addIndicators({
+        .setClassToggle(this, "fade-in") //add class to the section's div
+        .addIndicators({ // remove before turning in!
           name: 'fade scene',
           colorTrigger: 'black',
           colorStart: '#74C695',
           colorEnd: 'pink'
           })
-        .addTo(scrollMagicController);
+        .addTo(scrollMagicController); // add to controller
     });
 
 
-    // Animation to draw SVG for green wavey lines
-    // grab svg and prepare svg paths
+    // ANIMATION: Draw SVG for green wavey lines in experience section
+    // grab svg paths and prepare paths by modifying css properties
     var greenLines = $(".line");
     preparePath(greenLines);
     // build tween
@@ -43,6 +47,11 @@ $(function() {
       tweenChanges: true
       })
       .setTween(tween)
-      .addIndicators() // remove after
+      .addIndicators({ // remove before turning in!
+        name: 'drawing green waves',
+        colorTrigger: 'black',
+        colorStart: '#74C695',
+        colorEnd: 'pink'
+      })
       .addTo(scrollMagicController);
 });
