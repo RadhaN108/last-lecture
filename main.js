@@ -37,11 +37,11 @@ $(function() {
     // ANIMATION: falling pyramid fundamentals when scrolling into section
     var funAnim = new TimelineMax();
     funAnim.from('#fundamentals-1', 3, {y: "-=1500px"}, .25)
-           .to('#fundamentals-1', 1, {opacity: '.3'}, .25)
+           .to('#fundamentals-1', 1, {opacity: '.2'}, .25)
            .from('#fundamentals-2', 3, {y: "-=1400px"}, 0.5)
            .to('#fundamentals-2', 1, {opacity: '.2'}, .5)
            .from('#fundamentals-3', 3, {y: "-=1300px"}, 1)
-           .to('#fundamentals-3', 1, {opacity: '.1'}, 1)
+           .to('#fundamentals-3', 1, {opacity: '.2'}, 1)
            .from('#fancy', 3, {y: "-=1000px"}, 1.5)
            .to('#fancy', 1, {opacity: '.6'}, 1.5);
 
@@ -52,58 +52,33 @@ $(function() {
       triggerHook: 0.3
     })
     .setTween(funAnim)
-    .addIndicators({
-      name: 'stack',
-      colorTrigger: 'black',
-      colorStart: '#74C695',
-      colorEnd: 'pink'
-    })
+    // .addIndicators({
+    //   name: 'stack',
+    //   colorTrigger: 'black',
+    //   colorStart: '#74C695',
+    //   colorEnd: 'pink'
+    //  })
   .addTo(controller);
 
     // ANIMATION: get rid of brick on hover
     // when a brick element is hovered on, fade it out.
     $(".brick").hover(function(){
-      $(this).fadeOut(300)
+      $(this).fadeOut(200)
     });
 
-    // ANIMATION: change background color for hardwork section
-    // when user scrolls to the don't complain section, background turns black
-    // create animation TimelineMax
-    var backgroundChange = new TimelineMax()
-      .add(TweenMax.to('body', 1, {backgroundColor: 'black', ease:Power0.easeNone}))
-      .add(TweenMax.to('div', 1, {color: 'white', ease:Power0.easeNone}));
-
-    var complainBackground = new ScrollMagic.Scene({
-      triggerElement: "#work-hard",
-      triggerHook: .9,
-      duration: 500
-    })
-    .setTween(backgroundChange)
-    // .addIndicators({ // remove before turning in!
-    //   name: 'change background color',
-    //   colorTrigger: 'black',
-    //   colorStart: '#74C695',
-    //   colorEnd: 'pink'
-    // })
-    .addTo(controller); // add to controller
-
-    // ANIMATION: toggle backgorund when out of section (TODO)
-
-    // ANIMATION: draw in brick to draw
+    // ANIMATION: parrallax for brick wall
     // asdf
     var brickwall = $(".brick-wall");
     // build tween
-    var brickwallTween = new TimelineMax()
-      .add(TweenMax.from(brickwall, 15, {y: "+=400px", ease:Power0.easeNone}, 0))
-      //.add(TweenMax.to(brickwall, 3, {autoAlpha: 1}, 0))
-      ;
+    var brickEnter = new TimelineMax();
+    brickEnter.from(brickwall, 15, {y: "+=400px", ease:Power0.easeNone}, 0);
     // build scene, add tween to scene, add to controller
-    var svgScene = new ScrollMagic.Scene({
+    var BrickEnterScene = new ScrollMagic.Scene({
       triggerElement: "#brickwalls",
       triggerHook: 0.8,
       duration: 550,
       })
-      .setTween(brickwallTween)
+      .setTween(brickEnter)
       // .addIndicators({ // remove before turning in!
       //   name: 'building brick wall',
       //   colorTrigger: 'black',
@@ -111,6 +86,19 @@ $(function() {
       //   colorEnd: 'pink'
       // })
       .addTo(controller);
+    // build tween
+    var brickExit = new TimelineMax();
+    brickExit.to(brickwall, 15, {y: "-=400px", ease:Power0.easeNone}, 0);
+
+    var brickExitScene = new ScrollMagic.Scene({
+      triggerHook: 0,
+      triggerElement: '#brickwalls',
+      offset: 400,
+      duration: 300,
+    })
+    .setTween(brickExit)
+    .addIndicators()
+    .addTo(controller);
 
     // ANIMATION: Draw SVG for green wavey lines in experience section
     // grab svg paths and prepare paths by modifying css properties
@@ -129,6 +117,30 @@ $(function() {
       })
       .setTween(tween)
       .addTo(controller);
+
+      // ANIMATION: change background color for hardwork section
+      // when user scrolls to the don't complain section, background turns black
+      // create animation TimelineMax
+      var backgroundChange = new TimelineMax()
+        .add(TweenMax.to('body', 1, {backgroundColor: 'black', ease:Power0.easeNone}))
+        .add(TweenMax.to('div', 1, {color: 'white', ease:Power0.easeNone}));
+
+      var complainBackground = new ScrollMagic.Scene({
+        triggerElement: "#work-hard",
+        triggerHook: .9,
+        duration: 500
+      })
+      .setTween(backgroundChange)
+      // .addIndicators({ // remove before turning in!
+      //   name: 'change background color',
+      //   colorTrigger: 'black',
+      //   colorStart: '#74C695',
+      //   colorEnd: 'pink'
+      // })
+      .addTo(controller); // add to controller
+
+      // ANIMATION: toggle backgorund when out of section (TODO)
+
 });
 
 
