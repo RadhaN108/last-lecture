@@ -10,8 +10,16 @@ function preparePath(path) {
 $(function() {
 
     // Init Scroll Magic Controller
-    var scrollMagicController = new ScrollMagic.Controller({});
+    var controller = new ScrollMagic.Controller({});
 
+    // ANIMATION: Pin the header section
+    // 
+    var pinHeaderSection = new ScrollMagic.Scene({
+      triggerElement: "header",
+      triggerHook: 0
+    })
+    .setPin("header")
+    .addTo(controller);
 
     // ANIMATION: fade in text when scrolling to the section
     // Loop through each section's div
@@ -28,9 +36,8 @@ $(function() {
           colorStart: '#74C695',
           colorEnd: 'pink'
           })
-        .addTo(scrollMagicController); // add to controller
+        .addTo(controller); // add to controller
     });
-
 
     // ANIMATION: Draw SVG for green wavey lines in experience section
     // grab svg paths and prepare paths by modifying css properties
@@ -53,5 +60,5 @@ $(function() {
         colorStart: '#74C695',
         colorEnd: 'pink'
       })
-      .addTo(scrollMagicController);
+      .addTo(controller);
 });
