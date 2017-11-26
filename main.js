@@ -1,11 +1,3 @@
-// helper function used to draw SVG paths when scrolling
-function preparePath(path) {
-  var len = path[0].getTotalLength();
-  path.css("stroke-dasharray", len);
-  path.css("stroke-dashoffset", len);
-}
-
-
 // document ready function
 $(function() {
 
@@ -33,53 +25,116 @@ $(function() {
         triggerHook: 0.8,
         })
         .setClassToggle(this, "fade-in") //add class to the section's div
-        .addIndicators({ // remove before turning in!
-          name: 'fade scene',
-          colorTrigger: 'black',
-          colorStart: '#74C695',
-          colorEnd: 'pink'
-          })
+        // .addIndicators({ // remove before turning in!
+        //   name: 'fade scene',
+        //   colorTrigger: 'black',
+        //   colorStart: '#74C695',
+        //   colorEnd: 'pink'
+        //   })
         .addTo(controller); // add to controller
     });
 
+    // ANIMATION: falling pyramid fundamentals when scrolling into section
+    var funAnim = new TimelineMax();
+    funAnim.from('#fundamentals-1', 3, {y: "-=1500px"}, .25)
+           .to('#fundamentals-1', 1, {opacity: '.3'}, .25)
+           .from('#fundamentals-2', 3, {y: "-=1400px"}, 0.5)
+           .to('#fundamentals-2', 1, {opacity: '.2'}, .5)
+           .from('#fundamentals-3', 3, {y: "-=1300px"}, 1)
+           .to('#fundamentals-3', 1, {opacity: '.1'}, 1)
+           .from('#fancy', 3, {y: "-=1000px"}, 1.5)
+           .to('#fancy', 1, {opacity: '.6'}, 1.5);
+
+    var fundamentals = new ScrollMagic.Scene({
+      triggerElement: '.fun-1',
+      offset: -700,
+      duration: 700,
+      triggerHook: 0.3
+    })
+    .setTween(funAnim)
+    .addIndicators({
+      name: 'stack',
+      colorTrigger: 'black',
+      colorStart: '#74C695',
+      colorEnd: 'pink'
+    })
+  .addTo(controller);
+
     // ANIMATION: get rid of brick on hover
-    //
+    // when a brick element is hovered on, fade it out.
     $(".brick").hover(function(){
-      $(this).fadeOut (200);
+      $(this).fadeOut(300)
+    });
+
+    // ANIMATION: change background color for hardwork section
+    // when user scrolls to the don't complain section, background turns black
+    // create animation TimelineMax
+    var backgroundChange = new TimelineMax()
+      .add(TweenMax.to('body', 1, {backgroundColor: 'black', ease:Power0.easeNone}))
+      .add(TweenMax.to('div', 1, {color: 'white', ease:Power0.easeNone}));
+
+    var complainBackground = new ScrollMagic.Scene({
+      triggerElement: "#work-hard",
+      triggerHook: .9,
+      duration: 500
     })
+    .setTween(backgroundChange)
+    // .addIndicators({ // remove before turning in!
+    //   name: 'change background color',
+    //   colorTrigger: 'black',
+    //   colorStart: '#74C695',
+    //   colorEnd: 'pink'
+    // })
+    .addTo(controller); // add to controller
 
+    // ANIMATION: toggle backgorund when out of section (TODO)
 
-    // ANIMATION: Parallax scene
-    var slideParallaxScene = new ScrollMagic.Scene({
-      triggerElement: ".bcg-parallax",
-      triggerHook: 1,
-      duration: "300%"
-    })
-    .setTween(TweenMax.from('.bcg', 1, {y:'-30%', ease:Power0.easeNone}))
-    .addIndicators()
-    .addTo(controller);
-
+    // ANIMATION: draw in brick to draw
+    // asdf
+    var brickwall = $(".brick-wall");
+    // build tween
+    var brickwallTween = new TimelineMax()
+      .add(TweenMax.from(brickwall, 15, {y: "+=400px", ease:Power0.easeNone}, 0))
+      //.add(TweenMax.to(brickwall, 3, {autoAlpha: 1}, 0))
+      ;
+    // build scene, add tween to scene, add to controller
+    var svgScene = new ScrollMagic.Scene({
+      triggerElement: "#brickwalls",
+      triggerHook: 0.8,
+      duration: 550,
+      })
+      .setTween(brickwallTween)
+      // .addIndicators({ // remove before turning in!
+      //   name: 'building brick wall',
+      //   colorTrigger: 'black',
+      //   colorStart: '#74C695',
+      //   colorEnd: 'pink'
+      // })
+      .addTo(controller);
 
     // ANIMATION: Draw SVG for green wavey lines in experience section
     // grab svg paths and prepare paths by modifying css properties
     var greenLines = $(".line");
     preparePath(greenLines);
+    greenLines.css("opacity", 0.3)
     // build tween
     var tween = new TimelineMax()
-      .add(TweenMax.to(greenLines, 3, {strokeDashoffset: 0, ease:Linear.easeNone}));
+      .add(TweenMax.to(greenLines, 2.5, {strokeDashoffset: 0, ease:Linear.easeNone}));
     // build scene, add tween to scene, add to controller
     var svgScene = new ScrollMagic.Scene({
       triggerElement: "#experience",
-      triggerHook: 0.8,
+      triggerHook: 0.7,
       duration: 300,
       tweenChanges: true
       })
       .setTween(tween)
-      .addIndicators({ // remove before turning in!
-        name: 'drawing green waves',
-        colorTrigger: 'black',
-        colorStart: '#74C695',
-        colorEnd: 'pink'
-      })
       .addTo(controller);
 });
+
+
+// helper function used to draw SVG paths when scrolling
+function preparePath(path) {
+  var len = path[0].getTotalLength();
+  path.css("stroke-dasharray", len);
+  path.css("stroke-dashoffset", len);
+}

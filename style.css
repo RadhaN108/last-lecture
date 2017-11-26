@@ -2,7 +2,7 @@ html,
 body {
   height: 100%;
   margin: 0;
-  font-size: 16px;
+  font-size: 20px;
   font-family: 'Oxygen', sans-serif;
   letter-spacing: 1px;
   text-align: center;
@@ -15,6 +15,7 @@ header,
   display: flex;
   flex-direction: column;
   justify-content: center;
+  padding-bottom: 150px;
 }
 
 h1 {
@@ -29,11 +30,10 @@ h1 {
 
 h2 {
   font-family:'Playfair Display', serif;
-  font-size: 3rem;
+  font-size: 4rem;
   font-weight: 700;
-  line-height: 3.2rem;
+  line-height: 3.5rem;
   font-style: italic;
-  color: black;
 }
 
 h3 {
@@ -50,57 +50,46 @@ p {
 
 .main {
   position: relative;
-  background-color: white;
 }
 
 section div {
-  width: 30%;
+  width: 50%;
   margin: 0px auto;
   opacity: 0;
   transform: translateY(50px);
   transition: all 1s ease-out;
+  z-index: 2;
 }
 
+/* svgs should always take up most of the background space */
 svg {
   width: 100%;
-  height: 50%;
-  z-index: 3;
+  z-index: 0;
   position: absolute;
-  pointer-events: none;
 }
 
-svg g {
-  pointer-events: all;
+/* specific classes for the fundamental svg*/
+svg#triangles {
+  /*position: relative;*/
+  overflow: visible;
+  transform: scale(.75);
 }
 
+#fancy,
+#fundamentals-1,
+#fundamentals-2,
+#fundamentals-3   {
+  opacity: 0;
+}
+
+/* specific classes for the brickwall svg */
+svg.brick-wall {
+  z-index: 3; /* cover up text with the */
+  pointer-events: all; /* enables hover effect for each brick */
+}
+
+/* Toggle Class to fade in the headers */
 .fade-in {
   opacity: 1;
   transform: translateY(0px);
-}
-
-section.bcg-parallax {
-  padding: 40px 0;
-  color: #fff;
-  background-color: #000;
-  position: relative;
-  overflow: hidden;
-}
-
-section.bcg-parallax h2 {
-  color: #fff;
-}
-
-.bcg {
-  background: url('http://deskbg.com/s3/wpp/13/13792/polygon-grunge-desktop-background.jpg') no-repeat;
-  background-size: cover;
-  position: absolute;
-  width: 100%;
-  height: 200%;
-  top: 0;
-  z-index: 1;
-  opacity: 0.6;
-}
-
-.content-wrapper {
-  z-index: 2;
 }
