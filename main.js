@@ -12,14 +12,17 @@ $(function() {
     // Init Scroll Magic Controller
     var controller = new ScrollMagic.Controller({});
 
-    // ANIMATION: Pin the header section
-    // 
-    var pinHeaderSection = new ScrollMagic.Scene({
-      triggerElement: "header",
-      triggerHook: 0
-    })
-    .setPin("header")
-    .addTo(controller);
+    // // ANIMATION: Pin the header section
+    // // create a scene that triggers with the header
+    // var pinHeader = new ScrollMagic.Scene({
+    //   triggerElement: "header",
+    //   triggerHook: 0,
+    //   duration: "40%"
+    // })
+    // .setPin("header", {pushFollowers: false})
+    // .addIndicators()
+    // .addTo(controller);
+
 
     // ANIMATION: fade in text when scrolling to the section
     // Loop through each section's div
@@ -38,6 +41,24 @@ $(function() {
           })
         .addTo(controller); // add to controller
     });
+
+    // ANIMATION: get rid of brick on hover
+    //
+    $(".brick").hover(function(){
+      $(this).fadeOut (200);
+    })
+
+
+    // ANIMATION: Parallax scene
+    var slideParallaxScene = new ScrollMagic.Scene({
+      triggerElement: ".bcg-parallax",
+      triggerHook: 1,
+      duration: "300%"
+    })
+    .setTween(TweenMax.from('.bcg', 1, {y:'-30%', ease:Power0.easeNone}))
+    .addIndicators()
+    .addTo(controller);
+
 
     // ANIMATION: Draw SVG for green wavey lines in experience section
     // grab svg paths and prepare paths by modifying css properties

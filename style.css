@@ -17,23 +17,6 @@ header,
   justify-content: center;
 }
 
-header {
-  background: pink;
-}
-
-.main {
-  position: relative;
-  background-color: white;
-}
-
-section div {
-  width: 30%;
-  margin: 0px auto;
-  opacity: 0;
-  transform: translateY(50px);
-  transition: all 1s ease-out;
-}
-
 h1 {
   font-family:'Playfair Display', serif;
   margin: 0px;
@@ -53,11 +36,6 @@ h2 {
   color: black;
 }
 
-.fade-in {
-  opacity: 1;
-  transform: translateY(0px);
-}
-
 h3 {
   font-family: 'Oxygen', sans-serif;
   font-size: 1rem;
@@ -70,9 +48,59 @@ p {
   letter-spacing: 1px;
 }
 
+.main {
+  position: relative;
+  background-color: white;
+}
+
+section div {
+  width: 30%;
+  margin: 0px auto;
+  opacity: 0;
+  transform: translateY(50px);
+  transition: all 1s ease-out;
+}
 
 svg {
   width: 100%;
   height: 50%;
+  z-index: 3;
+  position: absolute;
+  pointer-events: none;
+}
+
+svg g {
+  pointer-events: all;
+}
+
+.fade-in {
+  opacity: 1;
+  transform: translateY(0px);
+}
+
+section.bcg-parallax {
+  padding: 40px 0;
+  color: #fff;
+  background-color: #000;
+  position: relative;
+  overflow: hidden;
+}
+
+section.bcg-parallax h2 {
+  color: #fff;
+}
+
+.bcg {
+  background: url('http://deskbg.com/s3/wpp/13/13792/polygon-grunge-desktop-background.jpg') no-repeat;
+  background-size: cover;
+  position: absolute;
+  width: 100%;
+  height: 200%;
+  top: 0;
+  z-index: 1;
+  opacity: 0.6;
+}
+
+.content-wrapper {
   z-index: 2;
 }
