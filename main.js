@@ -4,18 +4,6 @@ $(function() {
     // Init Scroll Magic Controller
     var controller = new ScrollMagic.Controller({});
 
-    // // ANIMATION: Pin the header section
-    // // create a scene that triggers with the header
-    // var pinHeader = new ScrollMagic.Scene({
-    //   triggerElement: "header",
-    //   triggerHook: 0,
-    //   duration: "40%"
-    // })
-    // .setPin("header", {pushFollowers: false})
-    // .addIndicators()
-    // .addTo(controller);
-
-
     // ANIMATION: fade in text when scrolling to the section
     // Loop through each section's div
     $("section div").each(function(){
@@ -25,12 +13,6 @@ $(function() {
         triggerHook: 0.8,
         })
       .setClassToggle(this, "fade-in") //add class to the section's div
-      // .addIndicators({ // remove before turning in!
-      //   name: 'fade scene',
-      //   colorTrigger: 'black',
-      //   colorStart: '#74C695',
-      //   colorEnd: 'pink'
-      //   })
       .addTo(controller); // add to controller
     });
 
@@ -52,12 +34,6 @@ $(function() {
       triggerHook: 0.3
     })
     .setTween(funAnim)
-    // .addIndicators({
-    //   name: 'stack',
-    //   colorTrigger: 'black',
-    //   colorStart: '#74C695',
-    //   colorEnd: 'pink'
-    //  })
     .addTo(controller);
 
     // ANIMATION: get rid of brick on hover
@@ -67,7 +43,7 @@ $(function() {
     });
 
     // ANIMATION: parrallax for brick wall
-    // asdf
+    //
     var brickwall = $(".brick-wall");
     // build tween
     var brickEnter = new TimelineMax();
@@ -79,12 +55,6 @@ $(function() {
       duration: 550,
       })
     .setTween(brickEnter)
-    // .addIndicators({ // remove before turning in!
-    //   name: 'building brick wall',
-    //   colorTrigger: 'black',
-    //   colorStart: '#74C695',
-    //   colorEnd: 'pink'
-    // })
     .addTo(controller);
     // build tween
     var brickExit = new TimelineMax();
@@ -97,7 +67,6 @@ $(function() {
       duration: 300,
     })
     .setTween(brickExit)
-    // .addIndicators()
     .addTo(controller);
 
     // ANIMATION: speech bubble popping in when entering section
@@ -149,7 +118,6 @@ $(function() {
       triggerHook: 0.3
     })
     .setTween(critique)
-    .addIndicators()
     .addTo(controller);
 
     var critiqueExit = new TimelineMax();
@@ -161,7 +129,6 @@ $(function() {
       triggerHook: 0
     })
     .setTween(critiqueExit)
-    .addIndicators()
     .addTo(controller);
 
     // ANIMATION: hover over speech bubbles should become pink
@@ -202,26 +169,22 @@ $(function() {
       duration: 500
     })
     .setTween(backgroundChange)
-    // .addIndicators({ // remove before turning in!
-    //   name: 'change background color',
-    //   colorTrigger: 'black',
-    //   colorStart: '#74C695',
-    //   colorEnd: 'pink'
-    // })
     .addTo(controller); // add to controller
 
     // scroll to top functionality
     $(window).scroll(function () {
         if ($(this).scrollTop() > 100) {
             $('.cd-top').fadeIn();
+            $('.scroll').fadeOut();
         } else {
             $('.cd-top').fadeOut();
+            $('.scroll').fadeIn();
         }
     });
     $('.cd-top').click(function () {
       $("html, body").animate({
         scrollTop: 0
-      }, 1000);
+      }, 1500);
       return false;
     });
 

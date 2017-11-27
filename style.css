@@ -19,6 +19,12 @@ header,
   padding-bottom: 150px;
 }
 
+header p {
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding-top: 250px;
+}
+
 h1 {
   font-family:'Playfair Display', serif;
   margin: 0px;
@@ -26,7 +32,6 @@ h1 {
   font-weight: 700;
   line-height: 6rem;
   font-style: italic;
-
 }
 
 h2 {
@@ -114,12 +119,11 @@ svg.brick-wall {
   z-index: -1; /* makes the particles overlay on top of the text for this section */
 }
 
-/* back to top button */
-
+/* ===== back to top button */
 .cd-top {
   position: fixed;
-  width: 80px;
-  height: 80px;
+  width: 70px;
+  height: 70px;
   bottom: 50px;
   right: 50px;
   -webkit-border-radius: 50%;
@@ -128,6 +132,11 @@ svg.brick-wall {
   z-index: 5;
   box-shadow: 0 1.5px 4px rgba(0, 0, 0, 0.4), 0 1.5px 6px rgba(0, 0, 0, 0.2);
   cursor: pointer;
+  text-decoration: none;
+  color: white;
+  text-align: center;
+  font-size: 2rem;
+  line-height: 3rem;
 }
 
 .cd-top:hover {
