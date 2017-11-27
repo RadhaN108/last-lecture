@@ -88,36 +88,17 @@ $(function() {
     .addTo(controller);
     // build tween
     var brickExit = new TimelineMax();
-    brickExit.to(brickwall, 15, {y: "-=400px", ease:Power0.easeNone}, 0);
+    brickExit.to(brickwall, 15, {y: "-=300px", ease:Power0.easeNone}, 0);
 
     var brickExitScene = new ScrollMagic.Scene({
       triggerHook: 0,
       triggerElement: '#brickwalls',
-      offset: 400,
+      offset: 300,
       duration: 300,
     })
     .setTween(brickExit)
     // .addIndicators()
     .addTo(controller);
-
-    // ANIMATION: Draw SVG for green wavey lines in experience section
-    // grab svg paths and prepare paths by modifying css properties
-    var greenLines = $(".line");
-    preparePath(greenLines);
-    greenLines.css("opacity", 0.3);
-    // build tween
-    var tween = new TimelineMax()
-    .add(TweenMax.to(greenLines, 2.5, {strokeDashoffset: 0, ease:Linear.easeNone}));
-    // build scene, add tween to scene, add to controller
-    var svgScene = new ScrollMagic.Scene({
-      triggerElement: "#experience",
-      triggerHook: 0.7,
-      duration: 300,
-      tweenChanges: true
-      })
-    .setTween(tween)
-    .addTo(controller);
-
 
     // ANIMATION: speech bubble popping in when entering section
     //
@@ -163,6 +144,7 @@ $(function() {
 
     var speechBubbles = new ScrollMagic.Scene({
       triggerElement:"#critic",
+      offset: -50,
       duration: 300,
       triggerHook: 0.3
     })
@@ -170,10 +152,41 @@ $(function() {
     .addIndicators()
     .addTo(controller);
 
+    var critiqueExit = new TimelineMax();
+    critiqueExit.to('#speechBubbles', 1, {opacity: '0'});
+
+    var critExitScene = new ScrollMagic.Scene({
+      triggerElement: "#critic",
+      offset: 200,
+      triggerHook: 0
+    })
+    .setTween(critiqueExit)
+    .addIndicators()
+    .addTo(controller);
+
     // ANIMATION: hover over speech bubbles should become pink
     $(".bubble").hover(function(){
       $(this).toggleClass("show-heart");
     });
+
+
+    // ANIMATION: Draw SVG for green wavey lines in experience section
+    // grab svg paths and prepare paths by modifying css properties
+    var greenLines = $(".line");
+    preparePath(greenLines);
+    greenLines.css("opacity", 0.3);
+    // build tween
+    var tween = new TimelineMax()
+    .add(TweenMax.to(greenLines, 2.5, {strokeDashoffset: 0, ease:Linear.easeNone}));
+    // build scene, add tween to scene, add to controller
+    var svgScene = new ScrollMagic.Scene({
+      triggerElement: "#patience",
+      triggerHook: 0.7,
+      duration: 300,
+      tweenChanges: true
+      })
+    .setTween(tween)
+    .addTo(controller);
 
 
     // ANIMATION: change background color for hardwork section
@@ -197,7 +210,20 @@ $(function() {
     // })
     .addTo(controller); // add to controller
 
-    // ANIMATION: toggle backgorund when out of section (TODO)
+    // scroll to top functionality
+    $(window).scroll(function () {
+        if ($(this).scrollTop() > 100) {
+            $('.cd-top').fadeIn();
+        } else {
+            $('.cd-top').fadeOut();
+        }
+    });
+    $('.cd-top').click(function () {
+      $("html, body").animate({
+        scrollTop: 0
+      }, 1000);
+      return false;
+    });
 
 });
 
