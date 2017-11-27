@@ -122,21 +122,45 @@ $(function() {
     // ANIMATION: speech bubble popping in when entering section
     //
     var critique = new TimelineMax();
-    critique.to('.pink-bubble', 2, {opacity: '1'}, .5)
-            .from('.bubble1', 2, {x:'-=100'}, .75)
-            .to('.bubble1', 2, {opacity: '1'}, .75)
-            .from('.bubble2', 2, {x:'+=100'}, 1)
-            .to('.bubble2', 2, {opacity: '1'}, 1)
-            .from('.bubble3', 2, {x:'-=100'}, 1.25)
-            .to('.bubble3', 2, {opacity: '1'}, 1.25)
-            .from('.bubble4', 2, {x:'+=100'}, 1.5)
-            .to('.bubble4', 2, {opacity: '1'}, 1.5)
-            .from('.bubble5', 2, {x:'-=100'}, 1.75)
-            .to('.bubble5', 2, {opacity: '1'}, 1.75)
-            .from('.bubble6', 2, {x:'+=100'}, 2)
-            .to('.bubble6', 2, {opacity: '1'}, 2)
-            .to('.heart',0.5, {opacity: '1'}, 2.5)
-    ;
+    var isChromium = window.chrome,
+    winNav = window.navigator,
+    vendorName = winNav.vendor,
+    isOpera = winNav.userAgent.indexOf("OPR") > -1,
+    isIEedge = winNav.userAgent.indexOf("Edge") > -1,
+    isIOSChrome = winNav.userAgent.match("CriOS");
+
+    if(isIOSChrome){
+       console.log('is Google Chrome on IOS');
+       alert('is Google Chrome on IOS');
+    } else if(isChromium !== null && isChromium !== undefined && vendorName === "Google Inc." && isOpera == false && isIEedge == false) {
+      critique.to('.pink-bubble', 2, {opacity: '1'}, .5)
+              .from('.bubble1', 2, {x:'-=100'}, .75)
+              .to('.bubble1', 2, {opacity: '1'}, .75)
+              .from('.bubble2', 2, {x:'+=100'}, 1)
+              .to('.bubble2', 2, {opacity: '1'}, 1)
+              .from('.bubble3', 2, {x:'-=100'}, 1.25)
+              .to('.bubble3', 2, {opacity: '1'}, 1.25)
+              .from('.bubble4', 2, {x:'+=100'}, 1.5)
+              .to('.bubble4', 2, {opacity: '1'}, 1.5)
+              .from('.bubble5', 2, {x:'-=100'}, 1.75)
+              .to('.bubble5', 2, {opacity: '1'}, 1.75)
+              .from('.bubble6', 2, {x:'+=100'}, 2)
+              .to('.bubble6', 2, {opacity: '1'}, 2)
+              .to('.heart',0.5, {opacity: '1'}, 2.5);
+    } else {
+      critique.to('.pink-bubble', 2, {opacity: '1'}, .5)
+              .from('.bubble1', 2, {x:'-=100'}, .75)
+              .to('.bubble1', 2, {opacity: '1'}, .75)
+              .to('.bubble2', 2, {transform:'matrix(1,0,0,1,0,0)', opacity: '1'}, 1)
+              .from('.bubble3', 2, {x:'-=100'}, 1.25)
+              .to('.bubble3', 2, {opacity: '1'}, 1.25)
+              .to('.bubble4', 2, {transform:'matrix(1,0,0,1,0,0)', opacity: '1'}, 1.5)
+              .from('.bubble5', 2, {x:'-=100'}, 1.75)
+              .to('.bubble5', 2, {opacity: '1'}, 1.75)
+              .to('.bubble6', 2, {transform:'matrix(1,0,0,1,0,0)', opacity: '1'}, 2)
+              .to('.heart',0.5, {opacity: '1'}, 2.5);
+    }
+
     var speechBubbles = new ScrollMagic.Scene({
       triggerElement:"#critic",
       duration: 300,

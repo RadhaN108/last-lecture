@@ -96,7 +96,7 @@ svg.brick-wall {
 svg path.bubble,
 svg path.heart {
   opacity:0;
-  pointer-events:all;
+  pointer-events: all;
 }
 
 .show-heart {
