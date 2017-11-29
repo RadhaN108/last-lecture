@@ -125,6 +125,9 @@ svg path.heart {
 }
 
 /* particle container for the experience section */
+#experience {
+  padding-bottom: 150px;
+}
 #particles-js {
   padding-top: 200px;
   padding-bottom: 400px;
@@ -203,8 +206,7 @@ svg path.heart {
 
   svg.brick-wall {
       width: 160%;
-      z-index: -1;
-      opacity: 0.2;
+
   }
 
   .cd-top {
@@ -228,6 +230,7 @@ svg path.heart {
   section {
     padding: 0;
   }
+
 
   h1 {
     font-size: 3rem;
@@ -256,5 +259,7 @@ svg path.heart {
   svg.brick-wall {
       width: 325%;
       left: -500px;
+      z-index: -1;
+      opacity: 0.2;
   }
 }
