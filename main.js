@@ -130,7 +130,7 @@ $(function() {
       triggerHook: 0
     })
     .setTween(critiqueExit)
-    .addTo(controller); /* add to controller */ 
+    .addTo(controller); /* add to controller */
 
     // ANIMATION: hover over speech bubbles should become pink
     ///////
@@ -175,6 +175,15 @@ $(function() {
     .setTween(backgroundChange)
     .addTo(controller); // add to controller
 
+    var backToGrey = new ScrollMagic.Scene({
+      triggerElement: "#end",
+      triggerHook: 1,
+      duration: 400
+    })
+    .setTween(TweenMax.to('body', 1, {backgroundColor: 'white', easy:Power0.easeNone}))
+    .addTo(controller);
+
+
     // ANIMATION: Scroll to top functionality
     ///////
     $(window).scroll(function () {
@@ -192,7 +201,6 @@ $(function() {
       }, 1500);
       return false;
     });
-
 });
 
 
