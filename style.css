@@ -1,3 +1,5 @@
+/* =======  Desktop Styles  ===== */
+
 html,
 body {
   height: 100vh;
@@ -8,6 +10,7 @@ body {
   text-align: center;
 }
 
+/* sections size, layout, and spacing */
 header,
 .main section,
 #particles-js {
@@ -19,12 +22,13 @@ header,
   padding-bottom: 200px;
 }
 
-#fundamentals,
+#fundamentals, /* extra spacing for somet sections */
 #brickwalls,
 #work-hard {
   padding-bottom: 100px;
 }
 
+/* styles for type faces */
 header p {
   font-size: 0.7rem;
   font-weight: 700;
@@ -60,10 +64,7 @@ p {
   letter-spacing: 1px;
 }
 
-.main {
-  position: relative;
-}
-
+/* styling for content divs in each section*/
 section div {
   width: 50%;
   margin: 0px auto;
@@ -130,7 +131,7 @@ svg path.heart {
   z-index: -1; /* makes the particles overlay on top of the text for this section */
 }
 
-/* ===== back to top button */
+/* back to top button */
 .cd-top {
   position: fixed;
   width: 70px;
@@ -155,7 +156,10 @@ svg path.heart {
 }
 
 
-/* ==== Media Queries */
+/* =======  MEDIA QUERY: Tablet Styles  ===== */
+/* most edits are to adjusting typfaces, some
+   padding around sections.
+*/
 @media only screen and (max-width:939px) {
   html {
     overflow-x: hidden;
@@ -208,6 +212,11 @@ svg path.heart {
     font-size: 1rem;
     line-height: 2rem;
 }
+
+/* =======  MEDIA QUERY: Phone Styles  ===== */
+/* most edits are to adjusting typfaces, some
+   padding around sections.
+*/
 @media only screen and (max-width: 770px) {
   html {
     overflow-x: hidden;

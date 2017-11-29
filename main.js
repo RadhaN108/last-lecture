@@ -43,7 +43,7 @@ $(function() {
     });
 
     // ANIMATION: parrallax for brick wall
-    //
+    ///////
     var brickwall = $(".brick-wall");
     // build tween
     var brickEnter = new TimelineMax();
@@ -70,8 +70,9 @@ $(function() {
     .addTo(controller);
 
     // ANIMATION: speech bubble popping in when entering section
-    //
+    ///////
     var critique = new TimelineMax();
+    /* this code checks if your in chrome or firefox to fix a transformation issue */
     var isChromium = window.chrome,
     winNav = window.navigator,
     vendorName = winNav.vendor,
@@ -109,8 +110,7 @@ $(function() {
               .to('.bubble5', 2, {opacity: '1'}, 1.75)
               .to('.bubble6', 2, {transform:'matrix(1,0,0,1,0,0)', opacity: '1'}, 2)
               .to('.heart',0.5, {opacity: '1'}, 2.5);
-    }
-
+    }/* set up scene for bubbles flying in from side */
     var speechBubbles = new ScrollMagic.Scene({
       triggerElement:"#critic",
       offset: -50,
@@ -118,20 +118,22 @@ $(function() {
       triggerHook: 0.3
     })
     .setTween(critique)
-    .addTo(controller);
+    .addTo(controller); /* add to controller */
 
+    /* set up tween for speech bubbles fadding out */
     var critiqueExit = new TimelineMax();
     critiqueExit.to('#speechBubbles', 1, {opacity: '0'});
-
+    /* set up tween for speech bubbles fadding out */
     var critExitScene = new ScrollMagic.Scene({
       triggerElement: "#critic",
       offset: 200,
       triggerHook: 0
     })
     .setTween(critiqueExit)
-    .addTo(controller);
+    .addTo(controller); /* add to controller */ 
 
     // ANIMATION: hover over speech bubbles should become pink
+    ///////
     $(".bubble").hover(function(){
       $(this).toggleClass("show-heart");
     });
@@ -139,6 +141,7 @@ $(function() {
 
     // ANIMATION: Draw SVG for green wavey lines in experience section
     // grab svg paths and prepare paths by modifying css properties
+    ///////
     var greenLines = $(".line");
     preparePath(greenLines);
     greenLines.css("opacity", 0.3);
@@ -159,6 +162,7 @@ $(function() {
     // ANIMATION: change background color for hardwork section
     // when user scrolls to the don't complain section, background turns black
     // create animation TimelineMax
+    ///////
     var backgroundChange = new TimelineMax()
       .add(TweenMax.to('body', 1, {backgroundColor: 'black', ease:Power0.easeNone}))
       .add(TweenMax.to('div', 1, {color: 'white', ease:Power0.easeNone}));
@@ -171,7 +175,8 @@ $(function() {
     .setTween(backgroundChange)
     .addTo(controller); // add to controller
 
-    // scroll to top functionality
+    // ANIMATION: Scroll to top functionality
+    ///////
     $(window).scroll(function () {
         if ($(this).scrollTop() > 100) {
             $('.cd-top').fadeIn();
